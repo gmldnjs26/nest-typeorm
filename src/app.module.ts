@@ -47,6 +47,17 @@ import { Workspaces } from './entities/Workspaces';
       keepConnectionAlive: true, // HotReloading을 할 때 타입orm은 디비 연결을 끊어버리므로 연결을 유지할 수 있게 한다.
       charset: 'utf8mb4_general_ci',
     }),
+    // DI: Repository
+    TypeOrmModule.forFeature([
+      ChannelChats,
+      ChannelMembers,
+      Channels,
+      DMs,
+      Mentions,
+      Users,
+      WorkspaceMembers,
+      Workspaces,
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService, WorkspacesService],
