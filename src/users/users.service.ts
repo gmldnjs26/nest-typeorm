@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from 'src/entities/Users';
 import { Repository } from 'typeorm';
 
-import * as bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -21,9 +21,8 @@ export class UsersService {
     if (!password) {
       throw new HttpException('비밀번호가 없습니다.', 400);
     }
-    console.log(password);
     const hashedPassword = await bcrypt.hash(password, 12);
-    return await this.userRepository.save({
+    await this.userRepository.save({
       email,
       nickname,
       password: hashedPassword,
